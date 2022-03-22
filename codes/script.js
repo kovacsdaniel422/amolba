@@ -1,13 +1,25 @@
 window.addEventListener("load", init);
 
-/*rövidítések*/{
+/*rövidítések*/
+{
     function ID(elem) {
         return document.getElementById(elem);
     }
+
     function $(elem) {
         return document.querySelectorAll(elem);
     }
 }
+
+var kepeim = [{
+        eleres: "./kepek/x-300x300.png",
+        cim: "X",
+    },
+    {
+        eleres: "./kepek/o-300x300.png",
+        cim: "O",
+    }
+]
 
 function init() {
     megjelenit();
@@ -22,25 +34,26 @@ function mezoEvent() {
 }
 
 function megjelenit() {
-    var txt="";
+    var txt = "";
     for (let i = 0; i < 9; i++) {
-        txt+=
-        `<div class="mezo" id="${i}">
+        txt +=
+            `<div class="mezo" id="${i}">
         </div>`;
     }
-    ID("container").innerHTML=txt;   
+    ID("container").innerHTML = txt;
 }
 
-var kiJon=0;
-function xVagyO(){
-    index=event.target.id;
-    if (kiJon<1) {
-        ID(index).innerHTML="<p>X</p>";
+var kiJon = 0;
+
+function xVagyO() {
+    index = event.target.id;
+    if (kiJon < 1) {
+        ID(index).innerHTML = '<img src="' + kepeim[kiJon].eleres + '">';
         ID(index).removeEventListener("click", xVagyO);
         kiJon++;
         //console.log(kiJon);
     } else {
-        ID(index).innerHTML="<p>O</p>";
+        ID(index).innerHTML = '<img src="' + kepeim[kiJon].eleres + '">';
         ID(index).removeEventListener("click", xVagyO);
         kiJon--;
         //console.log(kiJon);
